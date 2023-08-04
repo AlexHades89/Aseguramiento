@@ -1,0 +1,44 @@
+###
+POST http://localhost:9000/api/user HTTP/1.1
+Content-Type: application/json
+
+{
+    "user": "admin",
+    "email": "admin@gmail.com",
+    "password": "admin"
+}
+//crear usuario
+
+###
+POST http://localhost:9000/api/agregarpacientes HTTP/1.1
+Content-Type: application/json
+
+{
+    "cui": "7894564981901",
+    "name": "Jose Yasuo",
+    "age": 23,
+    "direccion": "La grita del invocador"
+}
+//agregar paciente
+
+
+###
+GET  http://localhost:9000/api/user HTTP/1.1
+//ver todos los pacientes
+
+###
+GET  http://localhost:9000/api/pacientes/64bb28f37479e9d792a5a3a2 HTTP/1.1
+//Ver un paciente en especifico
+
+###
+PUT http://localhost:9000/api/pacientes/64bb2432f1e3144f68b8e144 HTTP/1.1
+Content-Type: application/json
+
+{
+    "cui": "29216111311901",
+    "name": "Emmanuel cabrera",
+    "age": "22",
+    "direccion": "mi casa"
+}
+//editar paciente
+
