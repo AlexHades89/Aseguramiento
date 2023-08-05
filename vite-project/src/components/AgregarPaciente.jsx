@@ -1,8 +1,9 @@
-import React from "react";
+import Navbar from "./Navbar";
 
 function AgregarPaciente() {
   return (
     <div>
+      <Navbar/>
       <div className="bg-gray-100">
         <div className="min-h-screen flex items-center justify-center">
           <div className="max-w-md w-full p-6 bg-white rounded-lg shadow-lg">

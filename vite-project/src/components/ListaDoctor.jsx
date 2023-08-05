@@ -1,12 +1,8 @@
-import NavBar from './Navbar'
-import Tabla from './Tabla'
-import Buttonag from './Buttonag'
-
+import Tabla from './Tabla';
 function ListaDoctor() {
   return (
-        <><NavBar/>
-        <Buttonag/>
-        <Tabla/></>
+      
+        <Tabla/>
   )
 }
 
