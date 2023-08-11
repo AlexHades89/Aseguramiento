@@ -1,9 +1,8 @@
-import Navbar from "./Navbar";
 
-function AgregarPaciente() {
+
+function AgregarPacienteform() {
   return (
     <div>
-      <Navbar/>
       <div className="bg-gray-100">
         <div className="min-h-screen flex items-center justify-center">
           <div className="max-w-md w-full p-6 bg-white rounded-lg shadow-lg">
@@ -17,7 +16,7 @@ function AgregarPaciente() {
             <h1 className="text-2xl font-semibold text-center text-gray-500 mt-8 mb-6">
               Registro Paciente
             </h1>
-            <form>
+            <div>
               <div className="mb-4">
                 <label className="block mb-2 text-sm text-gray-600">
                   CUI
@@ -41,7 +40,7 @@ function AgregarPaciente() {
                 />
               </div>
               <div className="mb-4">
-                <label for="email" className="block mb-2 text-sm text-gray-600">
+                <label  className="block mb-2 text-sm text-gray-600">
                   Edad
                 </label>
                 <input
@@ -68,10 +67,7 @@ function AgregarPaciente() {
               >
                 Registro
               </button>
-            </form>
-            <p className="text-xs text-gray-600 text-center mt-8">
-              &copy; 2023 UMG
-            </p>
+            </div>
           </div>
         </div>
       </div>
@@ -80,4 +76,4 @@ function AgregarPaciente() {
   );
 }
 
-export default AgregarPaciente;
+export default AgregarPacienteform;
