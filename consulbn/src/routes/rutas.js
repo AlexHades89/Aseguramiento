@@ -45,7 +45,7 @@ router.put("/actualizarpacientes/:id", (req, res) => {
 
 
 //crear doctor
-router.post("/agregardoctor", (req, res) => {
+router.post("/doctoragregar", (req, res) => {
   const doctor = doctorSChema(req.body);
   doctor
     .save()
@@ -55,19 +55,49 @@ router.post("/agregardoctor", (req, res) => {
 
 router.get("/obtenerdoctor", (req, res) => {
   doctorSChema
-    .findById(id)
+    .find()
     .then((data) => res.json(data))
     .catch((e) => res.json({ message: e }));
 });
 
 //consulta
-router.post("/agregarconsulta", (req, res) => {
-  const consulta = consultaSChema(req.body);
-  consulta
-    .save()
-    .then((data) => res.json(data))
-    .catch((e) => res.json({ message: e }));
+router.post("/agregarconsulta", async (req, res) => {
+  const { cuiPaciente, namePaciente, Doctor, clinica } = req.body;
+  const NewConsulta = consultaSChema({
+    cuiPaciente,
+    namePaciente,
+    Doctor,
+    clinica,
+  });
+  if (namePaciente) {
+    const cuifound = await userSChema.findOne({ name: { $in: namePaciente } });
+    NewConsulta.cuiPaciente = cuifound._id;
+  }
+  if (Doctor) {
+    const doctorFound = await doctorSChema.findOne({
+      nameDoctor: { $in: Doctor },
+    });
+    NewConsulta.Doctor = doctorFound._id;
+  }
+  new Promise(async (resolve, reject) => {
+    try {
+      const consultaNewData = await NewConsulta.save();
+      resolve();
+    } catch (e) {
+      reject(e);
+    }
+  })
+    .then(() => {
+      res.status(204).send();
+    })
+    .catch((error) => {
+      res.status(500).json({
+        message:
+          "Los datos no fueron creados correctamente, Error: ${error.message}",
+      });
+    });
 });
+
 
 
 router.get("/obtenerconsulta", (req, res) => {

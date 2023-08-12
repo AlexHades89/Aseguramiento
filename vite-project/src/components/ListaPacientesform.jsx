@@ -1,18 +1,28 @@
-import Buttonac from "./Buttonac";
-import Buttonde from "./Buttonde";
-
+import { usePaciente } from "../context/PacienteContext";
+import { useState, useEffect } from "react";
 
 function ListaPacientesform() {
-  
+  const { Paciente } = usePaciente();
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    info();
+  }, []);
+
+  const info = async () => {
+    setData(await Paciente());
+  };
+
+  console.log(data);
   return (
     <div>
       <div>
         <main className="flex min-h-width w-full items-center justify-end mr-20 bg-gray-100">
           <a href="/AgregarPaciente">
-          <button className="group relative h-12 w-48 overflow-hidden rounded-2xl bg-green-500 text-lg font-bold text-white">
-            Agregar
-            <div className="absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30"></div>
-          </button>
+            <button className="group relative h-12 w-48 overflow-hidden rounded-2xl bg-green-500 text-lg font-bold text-white">
+              Agregar
+              <div className="absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30"></div>
+            </button>
           </a>
         </main>
       </div>
@@ -33,33 +43,25 @@ function ListaPacientesform() {
                 <th className="text-left py-3 px-4 uppercase font-semibold text-sm">
                   dirección
                 </th>
-                <th className="text-left py-3 px-4 uppercase font-semibold text-sm">
-                  acciones
-                </th>
               </tr>
             </thead>
             <tbody className="text-gray-700">
-              <tr>
-                <td className="w-1/3 text-left py-3 px-4">Lian</td>
-                <td className="w-1/3 text-left py-3 px-4">Smith</td>
-                <td className="text-left py-3 px-4">
-                  <a className="hover:text-blue-500" href="tel:622322662">
-                    622322662
-                  </a>
-                </td>
-                <td className="text-left py-3 px-4">
-                  <a
-                    className="hover:text-blue-500"
-                    href="mailto:jonsmith@mail.com"
-                  >
-                    jonsmith@mail.com
-                  </a>
-                </td>
-                <td>
-                  <Buttonac />
-                  <Buttonde />
-                </td>
-              </tr>
+              {data.map((pacientedata) => (
+                <tr key={pacientedata._id}>
+                  <td className="w-1/3 text-left py-3 px-4">
+                    {pacientedata.cui}
+                  </td>
+                  <td className="w-1/3 text-left py-3 px-4">
+                    {pacientedata.name}
+                  </td>
+                  <td className="text-left py-3 px-4">
+                    {pacientedata.age}
+                    </td>
+                  <td className="text-left py-3 px-4">
+                    {pacientedata.direccion}
+                  </td>
+                </tr>
+                ))}
             </tbody>
           </table>
         </div>

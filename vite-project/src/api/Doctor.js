@@ -13,7 +13,7 @@ const DoctorApi = axios.create({
 export const getDoctor = async () => {
   const res = await DoctorApi.get("/obtenerdoctor")
     .then((data) => {
-      return data.data.data;
+      return data.data;
     })
     .catch((error) => error.response);
 
@@ -21,7 +21,7 @@ export const getDoctor = async () => {
 };
 
 export const postDoctor = async (credentials) => {
-  const res = await DoctorApi.post("/agregardoctor", credentials)
+  const res = await DoctorApi.post("/doctoragregar", credentials)
     .then((data) => {
       return data;
     })

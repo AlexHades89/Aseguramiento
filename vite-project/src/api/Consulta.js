@@ -13,7 +13,7 @@ const ConsultaApi = axios.create({
 export const getConsulta = async () => {
   const res = await ConsultaApi.get("/obtenerconsulta")
     .then((data) => {
-      return data.data.data;
+      return data.data;
     })
     .catch((error) => error.response);
 

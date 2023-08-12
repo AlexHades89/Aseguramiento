@@ -3,12 +3,14 @@ const mongoose = require("mongoose");
 require ("dotenv").config();
 const Rutas = require("./routes/rutas");
 const cors = require("cors");
+const morgan = require("morgan");
 
 const app = express();
 
 const corsOptions = {};
 app.use(cors(corsOptions));
 
+app.use(morgan("dev"));
 
 const port = process.env.PORT || 9000;
 //middleware

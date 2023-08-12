@@ -10,18 +10,13 @@ const consultaSChema = mongoose.Schema({
         require: true
     },
     Doctor: {
-        type: Number,
+        type: String,
         require: true
     },
     clinica:{
         type: String,
         require: true
-    },
-    status: {
-        type: Boolean,
-        required: true,
-        default: true,
-        }
+    }
 });
 
 module.exports = mongoose.model('consulta', consultaSChema);

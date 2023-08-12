@@ -18,7 +18,7 @@ function DoctorProvider({ children }) {
       })
       .catch((error) => error);
 
-    return auto;
+    return Doctor;
   };
 
   const insert = (credentials) => postDoctor(credentials);

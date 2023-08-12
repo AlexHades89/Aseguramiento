@@ -4,7 +4,8 @@ const pacienteSChema = mongoose.Schema({
     cui:{
         type: String,
         require: true,
-        unique: true
+        unique: true,
+        trim: true
     },
     name: {
         type: String,
@@ -17,12 +18,8 @@ const pacienteSChema = mongoose.Schema({
     direccion:{
         type: String,
         require: true
-    },
-    status: {
-        type: Boolean,
-        required: true,
-        default: true,
-        }
+    }
+
 });
 
 module.exports = mongoose.model('paciente', pacienteSChema);

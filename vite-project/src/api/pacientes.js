@@ -13,12 +13,12 @@ const PacienteApi = axios.create({
 export const getPaciente = async () => {
   const res = await PacienteApi.get("/obtenerpacientes")
     .then((data) => {
-      return data.data.data;
+      return data.data;
     })
     .catch((error) => error.response);
-
   return res;
 };
+
 
 export const postPaciente = async (credentials) => {
   const res = await PacienteApi.post("/agregarpacientes", credentials)

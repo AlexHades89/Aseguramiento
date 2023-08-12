@@ -6,13 +6,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function Loginform() {
-
-
   const { Login } = useLogin();
-
   
-
-
   const {
     register,
     handleSubmit,

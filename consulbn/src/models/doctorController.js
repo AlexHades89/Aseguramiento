@@ -1,27 +1,25 @@
 const mongoose = require("mongoose");
 
 const doctorSChema = mongoose.Schema({
-    cui:{
+    cuidoctor:{
         type: String,
-        require: true
+        require: true,
+        unique: true,
+        trim: true
     },
-    name: {
+    namedoctor: {
         type: String,
         require: true
+       
     },
     clinica: {
         type: Number,
-        require: true
+      
     },
     colegiado:{
         type: String,
-        require: true
-    },
-    status: {
-        type: Boolean,
-        required: true,
-        default: true,
-        }
+        unique: true
+    }
 
 });
 

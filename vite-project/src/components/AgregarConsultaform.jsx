@@ -1,9 +1,33 @@
-
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { ValidaConsulta } from "../validations/ValidacionConsulta";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useConsulta } from "../context/ConsultaContext";
 
 function AgregarConsultaform() {
+  const {insert} = useConsulta();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(ValidaConsulta),
+  });
+
+  const onSubmit = async (e) => {
+    console.log(e);
+    const res = await insert(e);
+    if (res.status === 204) {
+      toast.success("Consulta Guardado Correctamente");
+    } else if (res.status === 400 || res.status === 401) {
+      toast.warning(`Error ${res.data.message}`);
+    }
+  };
   return (
     <div>
-
+      <ToastContainer/>
       <div className="bg-gray-100">
         <div className="min-h-screen flex items-center justify-center">
           <div className="max-w-md w-full p-6 bg-white rounded-lg shadow-lg">
@@ -17,17 +41,16 @@ function AgregarConsultaform() {
             <h1 className="text-2xl font-semibold text-center text-gray-500 mt-8 mb-6">
               Registro Consulta
             </h1>
-            <form>
+            <form onSubmit={handleSubmit(onSubmit)}>
               <div className="mb-4">
                 <label className="block mb-2 text-sm text-gray-600">
                   CUI Paciente
                 </label>
                 <input
                   type="text"
-                  name="CUI"
                   className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
                   required
-                />
+                {...register("cuipaciente")}/>
               </div>
               <div className="mb-4">
                 <label className="block mb-2 text-sm text-gray-600">
@@ -35,10 +58,9 @@ function AgregarConsultaform() {
                 </label>
                 <input
                   type="text"
-                  name="NombrePaciente"
                   className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
                   required
-                />
+                {...register("namepaciente")}/>
               </div>
               <div className="mb-4">
                 <label className="block mb-2 text-sm text-gray-600">
@@ -46,10 +68,9 @@ function AgregarConsultaform() {
                 </label>
                 <input
                   type="text"
-                  name="NombreDoctor"
                   className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
                   required
-                />
+                {...register("doctor")}/>
               </div>
               <div className="mb-4">
                 <label className="block mb-2 text-sm text-gray-600">
@@ -57,10 +78,9 @@ function AgregarConsultaform() {
                 </label>
                 <input
                   type="text"
-                  name="clinica"
                   className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
                   required
-                />
+                {...register("clinica")}/>
               </div>
               <button
                 type="submit"

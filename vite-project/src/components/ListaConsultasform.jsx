@@ -1,8 +1,20 @@
-import Buttonac from "./Buttonac";
-import Buttonde from "./Buttonde";
-
+import { useState, useEffect } from "react";
+import { useConsulta } from "../context/ConsultaContext";
 
 function ListaConsultasform() {
+
+  const { Consulta } = useConsulta();
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    info();
+  }, []);
+
+  const info = async () => {
+    setData(await Consulta());
+  };
+
+  console.log(data);
   return (
     <div>
       
@@ -33,33 +45,25 @@ function ListaConsultasform() {
                 <th className="text-left py-3 px-4 uppercase font-semibold text-sm">
                   Clinica
                 </th>
-                <th className="text-left py-3 px-4 uppercase font-semibold text-sm">
-                  acciones
-                </th>
               </tr>
             </thead>
             <tbody className="text-gray-700">
-              <tr>
-                <td className="w-1/3 text-left py-3 px-4">Lian</td>
-                <td className="w-1/3 text-left py-3 px-4">Smith</td>
-                <td className="text-left py-3 px-4">
-                  <a className="hover:text-blue-500" href="tel:622322662">
-                    622322662
-                  </a>
-                </td>
-                <td className="text-left py-3 px-4">
-                  <a
-                    className="hover:text-blue-500"
-                    href="mailto:jonsmith@mail.com"
-                  >
-                    jonsmith@mail.com
-                  </a>
-                </td>
-                <td>
-                  <Buttonac />
-                  <Buttonde />
-                </td>
-              </tr>
+              {data.map((consultadata) => (
+                <tr key={consultadata._id}>
+                  <td className="w-1/3 text-left py-3 px-4">
+                    {consultadata.cuiPaciente}
+                  </td>
+                  <td className="w-1/3 text-left py-3 px-4">
+                    {consultadata.namePaciente}
+                  </td>
+                  <td className="text-left py-3 px-4">
+                    {consultadata.Doctor}
+                    </td>
+                  <td className="text-left py-3 px-4">
+                    {consultadata.clinica}
+                  </td>
+                </tr>
+                ))}
             </tbody>
           </table>
         </div>

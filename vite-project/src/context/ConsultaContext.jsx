@@ -3,7 +3,7 @@ import { getConsulta, postConsulta } from "../api/Consulta";
 
 const ConsultaContext = createContext();
 
-export const usePaciente = () => {
+export const useConsulta = () => {
   const context = useContext(ConsultaContext);
   if (!context) throw new Error("useUsers must used within a provider");
   return context;
@@ -17,8 +17,7 @@ function ConsultaProvider({ children }) {
         return data;
       })
       .catch((error) => error);
-
-    return auto;
+    return Consulta;
   };
 
   const insert = (credentials) => postConsulta(credentials);

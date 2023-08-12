@@ -17,8 +17,7 @@ function PacienteProvider({ children }) {
         return data;
       })
       .catch((error) => error);
-
-    return auto;
+    return Paciente;
   };
 
   const insert = (credentials) => postPaciente(credentials);
