@@ -22,7 +22,7 @@ export const getConsulta = async () => {
 
 
 export const postConsulta = async (credentials) => {
-  const res = await AutoApi.post("/agregarconsulta", credentials)
+  const res = await ConsultaApi.post("/agregarconsulta", credentials)
     .then((data) => {
       return data;
     })

@@ -63,15 +63,16 @@ router.get("/obtenerdoctor", (req, res) => {
 //consulta
 router.post("/agregarconsulta", async (req, res) => {
   const { cuiPaciente, namePaciente, Doctor, clinica } = req.body;
+  console.log(res);
   const NewConsulta = consultaSChema({
     cuiPaciente,
-    namePaciente,
-    Doctor,
-    clinica,
+    clinica
+    
   });
   if (namePaciente) {
-    const cuifound = await userSChema.findOne({ name: { $in: namePaciente } });
-    NewConsulta.cuiPaciente = cuifound._id;
+    const namefound = await userSChema.findOne({ name: { $in: namePaciente } });
+    NewConsulta.namePaciente = namefound._id;
+    console.log(namePaciente)
   }
   if (Doctor) {
     const doctorFound = await doctorSChema.findOne({
@@ -81,7 +82,7 @@ router.post("/agregarconsulta", async (req, res) => {
   }
   new Promise(async (resolve, reject) => {
     try {
-      const consultaNewData = await NewConsulta.save();
+      await NewConsulta.save();
       resolve();
     } catch (e) {
       reject(e);
