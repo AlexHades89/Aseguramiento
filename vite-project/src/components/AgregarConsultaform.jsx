@@ -50,7 +50,7 @@ function AgregarConsultaform() {
                   type="text"
                   className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
                   required
-                {...register("cuipaciente")}/>
+                {...register("cuiPaciente")}/>
               </div>
               <div className="mb-4">
                 <label className="block mb-2 text-sm text-gray-600">
@@ -60,7 +60,7 @@ function AgregarConsultaform() {
                   type="text"
                   className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
                   required
-                {...register("namepaciente")}/>
+                {...register("namePaciente")}/>
               </div>
               <div className="mb-4">
                 <label className="block mb-2 text-sm text-gray-600">
@@ -70,7 +70,7 @@ function AgregarConsultaform() {
                   type="text"
                   className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
                   required
-                {...register("doctor")}/>
+                {...register("Doctor")}/>
               </div>
               <div className="mb-4">
                 <label className="block mb-2 text-sm text-gray-600">

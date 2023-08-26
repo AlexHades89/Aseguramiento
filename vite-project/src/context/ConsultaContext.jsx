@@ -1,5 +1,7 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import { getConsulta, postConsulta } from "../api/Consulta";
+import { getPaciente } from "../api/pacientes"
+import { getDoctor } from "../api/Doctor"
 
 const ConsultaContext = createContext();
 
@@ -11,6 +13,9 @@ export const useConsulta = () => {
 
 function ConsultaProvider({ children }) {
 
+  const [pacientes, setPacientes] = useState();
+  const [doctor, setDocotor] = useState();
+
   const Consulta = async () => {
     const Consulta = await getConsulta()
       .then((data) => {
@@ -19,6 +24,15 @@ function ConsultaProvider({ children }) {
       .catch((error) => error);
     return Consulta;
   };
+
+  useEffect(() => {
+    getPaciente().then((data) =>
+    setPacientes(data.map((m) => ({ value: m.name, label: m.name })))
+    );
+    getDoctor().then((data) =>
+      setDocotor(data.map((m) => ({ value: m.name, label: m.name })))
+    );
+  }, []);
 
   const insert = (credentials) => postConsulta(credentials);
 

@@ -61,44 +61,13 @@ router.get("/obtenerdoctor", (req, res) => {
 });
 
 //consulta
-router.post("/agregarconsulta", async (req, res) => {
-  const { cuiPaciente, namePaciente, Doctor, clinica } = req.body;
-  console.log(res);
-  const NewConsulta = consultaSChema({
-    cuiPaciente,
-    clinica
-    
-  });
-  if (namePaciente) {
-    const namefound = await userSChema.findOne({ name: { $in: namePaciente } });
-    NewConsulta.namePaciente = namefound._id;
-    console.log(namePaciente)
-  }
-  if (Doctor) {
-    const doctorFound = await doctorSChema.findOne({
-      nameDoctor: { $in: Doctor },
-    });
-    NewConsulta.Doctor = doctorFound._id;
-  }
-  new Promise(async (resolve, reject) => {
-    try {
-      await NewConsulta.save();
-      resolve();
-    } catch (e) {
-      reject(e);
-    }
-  })
-    .then(() => {
-      res.status(204).send();
-    })
-    .catch((error) => {
-      res.status(500).json({
-        message:
-          "Los datos no fueron creados correctamente, Error: ${error.message}",
-      });
-    });
+router.post("/agregarconsulta", (req, res) => {
+  const consulta = consultaSChema(req.body);
+  consulta
+    .save()
+    .then((data) => res.json(data))
+    .catch((e) => res.json({ message: e }));
 });
-
 
 
 router.get("/obtenerconsulta", (req, res) => {
