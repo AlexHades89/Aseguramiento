@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useConsulta } from "../context/ConsultaContext";
 
 function AgregarConsultaform() {
-  const {insert} = useConsulta();
+  const { insert } = useConsulta();
 
   const {
     register,
@@ -27,7 +27,7 @@ function AgregarConsultaform() {
   };
   return (
     <div>
-      <ToastContainer/>
+      <ToastContainer />
       <div className="bg-gray-100">
         <div className="min-h-screen flex items-center justify-center">
           <div className="max-w-md w-full p-6 bg-white rounded-lg shadow-lg">
@@ -49,8 +49,11 @@ function AgregarConsultaform() {
                 <input
                   type="text"
                   className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
-                  required
-                {...register("cuiPaciente")}/>
+                  {...register("cuiPaciente")}
+                />
+                <span className="text-red-500 text-center">
+                  {errors.cuiPaciente?.message}
+                </span>
               </div>
               <div className="mb-4">
                 <label className="block mb-2 text-sm text-gray-600">
@@ -59,8 +62,11 @@ function AgregarConsultaform() {
                 <input
                   type="text"
                   className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
-                  required
-                {...register("namePaciente")}/>
+                  {...register("namePaciente")}
+                />
+                <span className="text-red-500 text-center">
+                  {errors.namePaciente?.message}
+                </span>
               </div>
               <div className="mb-4">
                 <label className="block mb-2 text-sm text-gray-600">
@@ -69,8 +75,11 @@ function AgregarConsultaform() {
                 <input
                   type="text"
                   className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
-                  required
-                {...register("Doctor")}/>
+                  {...register("Doctor")}
+                />
+                <span className="text-red-500 text-center">
+                  {errors.Doctor?.message}
+                </span>
               </div>
               <div className="mb-4">
                 <label className="block mb-2 text-sm text-gray-600">
@@ -79,8 +88,11 @@ function AgregarConsultaform() {
                 <input
                   type="text"
                   className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
-                  required
-                {...register("clinica")}/>
+                  {...register("clinica")}
+                />
+                <span className="text-red-500 text-center">
+                  {errors.clinica?.message}
+                </span>
               </div>
               <button
                 type="submit"

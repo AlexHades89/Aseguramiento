@@ -58,6 +58,9 @@ function Loginform() {
                             focus:text-gray-500 focus:outline-none focus:border-gray-200 rounded-md"
             {...register("user")}/>
           </div>
+          <span className="text-red-500 text-center">
+                    {errors.user?.message}
+                  </span>
           <div className="relative w-full">
             <input
               type="password"
@@ -69,7 +72,9 @@ function Loginform() {
             {...register("password")}/>
             <div className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"></div>
           </div>
-          
+          <span className="text-red-500 text-center">
+                    {errors.password?.message}
+                  </span>
           <button 
             className="w-full py-3 mt-10 bg-[#063970] rounded-md
                         font-medium text-white uppercase

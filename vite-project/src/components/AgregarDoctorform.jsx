@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useDoctor } from "../context/DoctorContext";
 
 function AgregarDoctorform() {
-  const {insert} = useDoctor();
+  const { insert } = useDoctor();
 
   const {
     register,
@@ -27,7 +27,7 @@ function AgregarDoctorform() {
   };
   return (
     <div>
-      <ToastContainer/>
+      <ToastContainer />
       <div className="bg-gray-100">
         <div className="min-h-screen flex items-center justify-center">
           <div className="max-w-md w-full p-6 bg-white rounded-lg shadow-lg">
@@ -43,14 +43,16 @@ function AgregarDoctorform() {
             </h1>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="mb-4">
-                <label className="block mb-2 text-sm text-gray-600">
-                  CUI
-                  </label>
+                <label className="block mb-2 text-sm text-gray-600">CUI</label>
                 <input
                   type="text"
                   className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
                   required
-               {...register("cuidoctor")} />
+                  {...register("cuidoctor")}
+                />
+                <span className="text-red-500 text-center">
+                  {errors.cuidoctor?.message}
+                </span>
               </div>
               <div className="mb-4">
                 <label className="block mb-2 text-sm text-gray-600">
@@ -60,7 +62,11 @@ function AgregarDoctorform() {
                   type="text"
                   className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
                   required
-                {...register("namedoctor")}/>
+                  {...register("namedoctor")}
+                />
+                <span className="text-red-500 text-center">
+                  {errors.namedoctor?.message}
+                </span>
               </div>
               <div className="mb-4">
                 <label className="block mb-2 text-sm text-gray-600">
@@ -70,7 +76,11 @@ function AgregarDoctorform() {
                   type="text"
                   className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
                   required
-                {...register("clinica")}/>
+                  {...register("clinica")}
+                />
+                <span className="text-red-500 text-center">
+                  {errors.clinica?.message}
+                </span>
               </div>
               <div className="mb-4">
                 <label className="block mb-2 text-sm text-gray-600">
@@ -80,7 +90,11 @@ function AgregarDoctorform() {
                   type="number"
                   className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
                   required
-                {...register("colegiado")}/>
+                  {...register("colegiado")}
+                />
+                <span className="text-red-500 text-center">
+                  {errors.colegiado?.message}
+                </span>
               </div>
               <button
                 type="submit"
